@@ -4,7 +4,7 @@
 .Entry-Container{
     width: 800px;
     height: 600px;
-    background: lightgrey;
+    background: rgba(255, 139, 211, 0.233);
     overflow: scroll;
     grid-column-start:1;
 }

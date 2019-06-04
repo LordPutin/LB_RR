@@ -22,12 +22,20 @@
                 name="Entries" id="EntriesAmount"> </span><button id="Button-Add">Add</button>
     </div>
     <div>
-        <button id="Button-Shuffle">Shuffle</button> <button id="draw">Draw</button>
+            <button id="Button-Clear">Clear</button> <button id="Button-Shuffle">Shuffle</button> <button id="draw">Draw</button>
     </div>
 
     <script>
+         var EntriesContainer = document.getElementById("EntriesContainer");
+         var WinnerDiv = document.getElementById("winner");
+        document.getElementById("Button-Clear").onclick=function(){
+            EntriesContainer.innerHTML="";
+            WinnerDiv.innerText = "";
+            WinnerDiv.classList.add("hidden");
+        };
+
         document.getElementById("Button-Add").onclick = function () {
-            var EntriesContainer = document.getElementById("EntriesContainer");
+           
             var Field_Name = document.getElementById("EntryName");
             var Field_Entries = document.getElementById("EntriesAmount");
             var EntryName = Field_Name.value;
@@ -55,15 +63,15 @@
 
         document.getElementById("draw").onclick = function () {
             //alert("Lets Draw");
-            var AllEntries = document.getElementById("EntriesContainer").getElementsByTagName("div");
+            var AllEntries = EntriesContainer.getElementsByTagName("div");
             //alert(AllEntries.length);
             var item = AllEntries[Math.floor(Math.random() * AllEntries.length)];
             //alert(item.innerText);
-            var WinnerDiv = document.getElementById("winner");
+            
             if(item.innerText.indexOf(":") != -1){
             var WinnerName = item.innerText.split(':')[0].trim();
             var WinnerTicket = item.innerText.split(':')[1].trim();
-            WinnerDiv.innerText = "Congratulations "+ WinnerName + "! You won with ticket #" + WinnerTicket ;
+            WinnerDiv.innerText = "Congratulations "+ WinnerName + "! You won with ticket entry #" + WinnerTicket ;
 
             }else{
                 WinnerDiv.innerText = "Congratulations " + item.innerText + "!!!";
@@ -74,7 +82,7 @@
 
         document.getElementById("Button-Shuffle").onclick = function () {
             var Shuffled = []
-            var AllEntries = document.getElementById("EntriesContainer").getElementsByTagName("div");
+            var AllEntries = EntriesContainer.getElementsByTagName("div");
 
             while (AllEntries.length > 0) {
                 //alert(AllEntries.length);
