@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="App">
+
+        <div class="Entry-Container" id="EntriesContainer"></div>
+        <div class="Draw-Board">
+            <div id="winner" class="winner hidden"></div>
+        </div>  
+    </div>
+
+    <div>
+        <span>Name: <input type="text" name="Entry" id="EntryName"></span> <span>Raffle Entries: <input type="number"
+                name="Entries" id="EntriesAmount"> </span><button id="Button-Add">Add</button>
+    </div>
+    <div>
+        <button id="Button-Shuffle">Shuffle</button> <button id="draw">Draw</button>
+    </div>
+
+    <script>
+        document.getElementById("Button-Add").onclick = function () {
+            var EntriesContainer = document.getElementById("EntriesContainer");
+            var Field_Name = document.getElementById("EntryName");
+            var Field_Entries = document.getElementById("EntriesAmount");
+            var EntryName = Field_Name.value;
+            var Entries = Field_Entries.value;
+
+
+            if (Entries <= 1) {
+                var newDiv = document.createElement("div");
+                newDiv.innerText = EntryName;
+                newDiv.className = "Raffle-Entry";
+                EntriesContainer.appendChild(newDiv);
+
+            } else {
+                for (var x = 0; x < Entries; x++) {
+                    var newDiv = document.createElement("div");
+                    newDiv.innerText = EntryName + ": " + (x + 1);
+                    newDiv.className = "Raffle-Entry";
+                    EntriesContainer.appendChild(newDiv);
+                }
+            }
+            Field_Name.value = "";
+            Field_Entries.value = "";
+        };
+
+
+        document.getElementById("draw").onclick = function () {
+            //alert("Lets Draw");
+            var AllEntries = document.getElementById("EntriesContainer").getElementsByTagName("div");
+            //alert(AllEntries.length);
+            var item = AllEntries[Math.floor(Math.random() * AllEntries.length)];
+            //alert(item.innerText);
+            var WinnerDiv = document.getElementById("winner");
+            if(item.innerText.indexOf(":") != -1){
+            var WinnerName = item.innerText.split(':')[0].trim();
+            var WinnerTicket = item.innerText.split(':')[1].trim();
+            WinnerDiv.innerText = "Congratulations "+ WinnerName + "! You won with ticket #" + WinnerTicket ;
+
+            }else{
+                WinnerDiv.innerText = "Congratulations " + item.innerText + "!!!";
+            }
+            WinnerDiv.classList.remove("hidden");
+
+        };
+
+        document.getElementById("Button-Shuffle").onclick = function () {
+            var Shuffled = []
+            var AllEntries = document.getElementById("EntriesContainer").getElementsByTagName("div");
+
+            while (AllEntries.length > 0) {
+                //alert(AllEntries.length);
+                var i = Math.floor(Math.random() * AllEntries.length);
+                var item = AllEntries[i];
+                Shuffled.push(item);
+                AllEntries[i].remove();
+                //alert(AllEntries.length);
+            }
+
+            //document.getElementById("EntriesContainer").innerHTML="";
+            Shuffled.forEach(element => {
+                document.getElementById("EntriesContainer").appendChild(element);
+            });
+        };
+    </script>
+</body>
+
+</html>

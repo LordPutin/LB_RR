@@ -1,0 +1,63 @@
+*{
+    margin-bottom: 5px;
+}
+.Entry-Container{
+    width: 800px;
+    height: 600px;
+    background: lightgrey;
+    overflow: scroll;
+    grid-column-start:1;
+}
+#q{
+    width: 100px;
+}
+.Raffle-Entry{
+    float: left;
+    width:100px;
+    height: 20px;
+    line-height: 20px;
+}
+.Raffle-Entry:before {
+    content: "";
+    display: block;
+    background: url("../img/lantern.png") no-repeat;
+    background-size: 20px 20px;
+    width: 20px;
+    height:20px;
+    float: left;
+    margin: 0 6px 0 0;
+}
+.App{
+    display: grid;
+    grid-template-columns: 800px auto;
+}
+
+.Draw-Board{
+    
+    width: 100%;
+    height: 100%;
+    grid-column-start:2;
+}
+.winner{
+    margin: 10%;
+    width: 80%;
+    height: 74px;
+  text-align: center;
+    font-size: 25px;
+    line-height: 74px;
+}
+.winner:before {
+    content: "";
+    display: block;
+    background: url("../img/glowing-lantern.png") no-repeat;
+    background-size: 74px 74px;
+    width: 74px;
+    height:74px;
+    float: left;
+    margin: 0 2px 0 0;
+}
+
+
+.hidden{
+    visibility: hidden;
+}
