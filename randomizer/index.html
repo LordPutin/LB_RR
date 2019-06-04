@@ -37,7 +37,8 @@
         document.getElementById("Button-Add").onclick = function () {
            
             var Field_Name = document.getElementById("EntryName");
-            var Field_Entries = document.getElementById("EntriesAmount");
+            if(Field_Name.value !=""){
+               var Field_Entries = document.getElementById("EntriesAmount");
             var EntryName = Field_Name.value;
             var Entries = Field_Entries.value;
 
@@ -57,7 +58,11 @@
                 }
             }
             Field_Name.value = "";
-            Field_Entries.value = "";
+            Field_Entries.value = ""; 
+            }else{
+                alert("Whoops!\nEntry name can't be empty.");
+            }
+            
         };
 
 
